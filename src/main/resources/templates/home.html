@@ -1,0 +1,33 @@
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/header :: common_header(~{::title},~{::link},~{::style})">
+
+    <title>Amostras</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/sobre.css}">
+
+    <style/>
+    <link/>
+</head>
+<body th:replace="layout/body :: common_body(~{::conteudo},~{::script})">
+<div th:fragment="conteudo">
+    <div th:replace="layout/menu"></div>
+    <div class="container">
+        <input enctype="multipart/form-data" action="/api/amostra/nova" method="post">
+            <input name="nome" style="width: 100%;" />
+            <input name="file" type="file" style="width: 100%;" />
+            <input type="button" value="Enviar" id="enviar" />
+        </form>
+    </div>
+
+
+
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('enviar')
+    })
+</script>
+
+
+</body>
+</html>

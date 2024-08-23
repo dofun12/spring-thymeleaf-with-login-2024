@@ -1,0 +1,44 @@
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/header :: common_header(~{::title},~{::link},~{::style})">
+
+    <title>Lista</title>
+    <link/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/sobre.css}">
+    <style type="text/css">
+        .card-container{
+            font-size: 12px;
+        }
+        .card-container img{
+            margin: 0 auto;
+            vertical-align: middle;
+            height: 150px;
+            width: 150px;
+            display: block;
+        }
+    </style>
+
+</head>
+<body th:replace="layout/body :: common_body(~{::conteudo},~{::script})">
+<div class="container-fluid" style="overflow: auto;height: 95vh;" th:fragment="conteudo">
+    <div th:replace="layout/menu"></div>
+    <div class="row">
+        <div class="col-12 col-md-2 card-container" th:each="video: ${listVideo}">
+            <div class="col-12  container-header">
+                <img th:src="${video.imageUrl}">
+            </div>
+            <div class="col-12">
+            </div>
+            <div class="col-12 container-title" th:text="${video.title}"></div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('enviar')
+    })
+</script>
+
+
+</body>
+</html>

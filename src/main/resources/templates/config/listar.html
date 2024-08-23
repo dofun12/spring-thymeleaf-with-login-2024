@@ -1,0 +1,30 @@
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/header :: common_header(~{::title},~{::link})">
+
+    <title>Amostras</title>
+    <link/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/sobre.css}">
+</head>
+
+<body th:replace="layout/body :: common_body(~{::conteudo},~{::script})">
+<div th:fragment="conteudo">
+    <div th:replace="layout/menu"></div>
+
+
+    <div class="tabela">
+        <th:block th:each="amostra,iter : ${amostras}">
+            <img width="100" height="100" th:src="${'/api/image/'+amostra.}" />
+            <div th:text="${amostra.getNome()}"></div>
+        </th:block>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    })
+</script>
+
+
+</body>
+</html>

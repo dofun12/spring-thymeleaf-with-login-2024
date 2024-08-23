@@ -1,0 +1,68 @@
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/header :: common_header(~{::title},~{::link},~{::style})">
+
+    <title>Amostras</title>
+    <link/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/sobre.css}">
+    <style th:fragment="style"></style>
+</head>
+<body th:replace="layout/body :: common_body(~{::conteudo},~{::script})">
+<div th:fragment="conteudo">
+    <div th:replace="layout/menu"></div>
+
+
+    <div class="row">
+        <th:block th:each="amostra,iter : ${fichas}">
+            <div class="col-12">
+                <a target="_blank" th:href="'https://www.photoacompanhantes.com'+${amostra.getUrl()}">
+                    <h1 class="col-12" th:text="${amostra.getNome()}"></h1>
+                </a>
+
+                <div class="row">
+                    <div class="col-3">
+                        <img class="img-thumbnail" width="300" height="300"
+                             th:src="${'/media/'+amostra.getId()+'/'+amostra.getImageFileName()}"/>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="col-12" th:text="${amostra.getTitle()}"></div>
+                        <th:block th:each="campo : ${amostra.getCategorias()}">
+                            <div class="col-12" th:text="${campo}"></div>
+                        </th:block>
+
+                        <div class="col-12" th:text="${amostra.getTelephone()}"></div>
+
+                        <div class="col-12">Vezes Encontrada: <span th:text="${amostra.getEncontradaCount()}"></span>
+                        </div>
+                        <div class="col-12">Criada: <span th:text="${amostra.getDateCreatedFormatted()}"></span></div>
+                        <div class="col-12">Atualizado: <span th:text="${amostra.getDateLastUpdate()}"></span></div>
+                        <div class="col-12">Tempo disponivel: <span th:text="${amostra.getDaysUp()}"></span></div>
+                        <div class="col-12">Fotos: <span th:text="${amostra.getImagens().size()}"></span></div>
+                        <div class="col-12">Endereço: <span th:text="${amostra.getEndereco()}"></span></div>
+                        <div class="col-12"><a th:href="${'/media/'+amostra.getId()+'/ficha_completa.html'}"
+                                               target="_blank">Ficha</a></div>
+                        <th:block th:each="horario : ${amostra.getHorarios()}">
+                            <div class="col-12" th:text="${horario}"></div>
+                        </th:block>
+                        <th:block th:each="valor : ${amostra.getValores()}">
+                            <div class="col-12" th:text="${valor}"></div>
+                        </th:block>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </th:block>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    })
+</script>
+
+
+</body>
+</html>
