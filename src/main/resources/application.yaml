@@ -1,0 +1,22 @@
+logging:
+  level:
+    root: debug
+    sun: error
+
+
+spring:
+  application:
+    name: spring-thymeleaf-with-login-2024
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
