@@ -1,22 +1,23 @@
 package org.lemanoman.springthymeleaf;
 
-
 import jakarta.persistence.*;
-
 import java.util.Collection;
 
 @Entity
+@Table(name = "role")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String name;
 
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
