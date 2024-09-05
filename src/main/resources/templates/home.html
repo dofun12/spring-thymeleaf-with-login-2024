@@ -8,6 +8,10 @@
 <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
 asdasdasd
 
+<ul>
+    <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/user-add">Adicionar User</li>
+</ul>
+
 <h2 th:text="${message}"></h2>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>

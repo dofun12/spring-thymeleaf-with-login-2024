@@ -18,7 +18,7 @@ public class User {
     @Column
     private String password;
     @Column
-    private boolean enabled;
+    private boolean enabled = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
