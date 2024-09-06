@@ -1,7 +1,26 @@
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<header th:fragment="commom_menu()"
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+            <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap">
+                <use xlink:href="#bootstrap"></use>
+            </svg>
+        </a>
+    </div>
 
-    </nav>
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/user-add" class="nav-link px-2">User Add</a></li>
+    </ul>
 
-
-</div>
+    <div class="col-md-3 text-end">
+        <button type="button" class="btn btn-outline-primary me-2">Login</button>
+        <form th:action="@{/logout}" class="logout"  method="post">
+            <input type="submit" class="btn btn-close-white" value="Sign out" />
+        </form>
+    </div>
+</header>
+</html>

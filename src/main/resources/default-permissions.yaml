@@ -1,0 +1,15 @@
+permissions:
+  user:
+     - name: "read"
+       description: "Read permission"
+     - name: "write"
+       description: "Write permission"
+     - name: "delete"
+       description: "Delete permission"
+  profile:
+     - name: "read"
+       description: "Read permission"
+     - name: "write"
+       description: "Write permission"
+     - name: "delete"
+       description: "Delete permission"

@@ -5,10 +5,13 @@ logging:
 
 
 spring:
+  session:
+    jdbc:
+      initialize-schema: always
   application:
     name: spring-thymeleaf-with-login-2024
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:file:./demo
     driver-class-name: org.h2.Driver
     username: sa
     password: password

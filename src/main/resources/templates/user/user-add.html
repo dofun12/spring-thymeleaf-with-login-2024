@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head>
-    <title>Add User</title>
+
+<head th:replace="~{layout/header :: common_header(~{::title})}">
+    <title>Adicionar Usuario</title>
 </head>
-<body sec:authorize="hasRole('ROLE_ADMIN')">
-<h1>Add User</h1>
-<form th:action="@{/user/save}" th:object="${user}" method="post">
-    <div>
-        <label for="id">Id:</label>
-        <input type="text" id="id" th:field="*{id}" readonly/>
+<body sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{layout/body :: common_body(~{::conteudo},~{::script})}">
+<th:block th:fragment="conteudo">
+    <div class="container">
+        <header th:replace="~{layout/menu :: commom_menu()}"></header>
+        <h1>Add User</h1>
+        <form th:action="@{/user/save}" th:object="${user}" method="post">
+            <div>
+                <label for="id">Id:</label>
+                <input type="text" id="id" th:field="*{id}" readonly/>
+            </div>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" th:field="*{username}" required/>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" th:field="*{password}" required/>
+            </div>
+            <div>
+                <label for="roles">Roles:</label>
+                <select multiple th:field="*{roles}" id="roles">
+                    <th:block th:each="role : ${roles}">
+                        <option th:value="${role.getId()}" th:text="${role.getName()}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <label for="enabled">Enabled:</label>
+            <input type="checkbox" id="enabled" th:field="*{enabled}"/>
+            <div>
+                <button type="submit">Add User</button>
+            </div>
+        </form>
     </div>
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" th:field="*{username}" required/>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" th:field="*{password}" required/>
-    </div>
-    <div>
-        <label for="roles">Roles:</label>
-        <select multiple th:field="*{roles}" id="roles">
-            <th:block th:each="role : ${roles}">
-                <option th:value="${role.getId()}" th:text="${role.getName()}"></option>
-            </th:block>
-        </select>
-    </div>
-    <label for="enabled">Enabled:</label>
-    <input type="checkbox" id="enabled" th:field="*{enabled}"/>
-    <div>
-        <button type="submit">Add User</button>
-    </div>
-</form>
+</th:block>
+<th:block th:fragment="script">
+
+</th:block>
+
 </body>
 </html>

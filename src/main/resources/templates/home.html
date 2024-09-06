@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head>
+<head th:replace="~{layout/header :: common_header(~{::title})}">
     <title>Hello World!</title>
 </head>
-<body>
-<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
-asdasdasd
 
-<ul>
-    <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/user-add">Adicionar User</li>
-</ul>
+<body th:replace="~{layout/body :: common_body(~{::conteudo},~{::script})}">
+<th:block th:fragment="conteudo">
+    <div class="container">
+        <header th:replace="~{layout/menu :: commom_menu()}"></header>
+        <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+        asdasdasd
 
-<h2 th:text="${message}"></h2>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+        <ul>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/user-add">Adicionar User</a></li>
+        </ul>
+
+        <h2 th:text="${message}"></h2>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</th:block>
+<th:block th:fragment="script">
+
+</th:block>
+
 </body>
+
 </html>

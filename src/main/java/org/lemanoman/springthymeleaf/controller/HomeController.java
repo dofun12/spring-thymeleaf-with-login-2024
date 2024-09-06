@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 public class HomeController {
 
-    @GetMapping
+    @GetMapping({"/", "/home"})
     public String home(Model model) {
         model.addAttribute("message", "Hello World");
         return "home";

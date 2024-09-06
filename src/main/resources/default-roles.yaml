@@ -1,0 +1,9 @@
+roles:
+    - name: "ROLE_ADMIN"
+      description: "Admin role"
+      permissions:
+          - "global.*"
+    - name: "ROLE_USER"
+      description: "User role"
+      permissions:
+          - "profile.*"

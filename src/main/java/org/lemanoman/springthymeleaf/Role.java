@@ -17,6 +17,14 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
+    @ManyToMany
+    @JoinTable(
+            name = "roles_permissions",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id")
+    )
+    private Collection<Permission> permissions;
+
     // Getters and setters
     public Long getId() {
         return id;
@@ -40,5 +48,13 @@ public class Role {
 
     public void setUsers(Collection<User> users) {
         this.users = users;
+    }
+
+    public Collection<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Collection<Permission> permissions) {
+        this.permissions = permissions;
     }
 }
