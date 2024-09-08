@@ -9,34 +9,42 @@
 <th:block th:fragment="conteudo">
     <div class="container">
         <header th:replace="~{layout/menu :: commom_menu()}"></header>
-        <h1>Add User</h1>
-        <form th:action="@{/user/save}" th:object="${user}" method="post">
-            <div>
-                <label for="id">Id:</label>
-                <input type="text" id="id" th:field="*{id}" readonly/>
+        <div class="card my-4">
+            <div class="card-header">
+                <h2>Add User</h2>
             </div>
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" th:field="*{username}" required/>
+            <div class="card-body">
+                <form th:action="@{/user/save}" th:object="${user}" method="post">
+                    <div class="form-group">
+                        <label for="id">Id:</label>
+                        <input type="text" id="id" th:field="*{id}" class="form-control" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" th:field="*{username}" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" th:field="*{password}" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="roles">Roles:</label>
+                        <select multiple th:field="*{roles}" id="roles" class="form-control">
+                            <th:block th:each="role : ${roles}">
+                                <option th:value="${role.getId()}" th:text="${role.getName()}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" id="enabled" th:field="*{enabled}" class="form-check-input"/>
+                        <label for="enabled" class="form-check-label">Enabled</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Add User</button>
+                    </div>
+                </form>
             </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" th:field="*{password}" required/>
-            </div>
-            <div>
-                <label for="roles">Roles:</label>
-                <select multiple th:field="*{roles}" id="roles">
-                    <th:block th:each="role : ${roles}">
-                        <option th:value="${role.getId()}" th:text="${role.getName()}"></option>
-                    </th:block>
-                </select>
-            </div>
-            <label for="enabled">Enabled:</label>
-            <input type="checkbox" id="enabled" th:field="*{enabled}"/>
-            <div>
-                <button type="submit">Add User</button>
-            </div>
-        </form>
+        </div>
     </div>
 </th:block>
 <th:block th:fragment="script">

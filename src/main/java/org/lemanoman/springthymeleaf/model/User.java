@@ -1,6 +1,7 @@
-package org.lemanoman.springthymeleaf;
+package org.lemanoman.springthymeleaf.model;
 
 import jakarta.persistence.*;
+import org.lemanoman.springthymeleaf.model.Role;
 
 import java.util.Collection;
 
@@ -13,12 +14,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(unique = true)
     private String username;
     @Column
     private String password;
     @Column
     private boolean enabled = true;
+
+    @Transient
+    private String confirmPassword;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -66,5 +70,13 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

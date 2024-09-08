@@ -60,6 +60,7 @@
                name="${_csrf.parameterName}"
                value="${_csrf.token}"/>
         <button type="submit">Login</button>
+        <a href="/onboarding">Create Account</a>
         <div th:if="${param.error}">
             Invalid username and password.
         </div>

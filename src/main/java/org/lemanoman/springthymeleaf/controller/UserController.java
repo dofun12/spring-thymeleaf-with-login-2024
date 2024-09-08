@@ -1,10 +1,9 @@
 package org.lemanoman.springthymeleaf.controller;
 
-import org.lemanoman.springthymeleaf.RoleRepository;
-import org.lemanoman.springthymeleaf.User;
-import org.lemanoman.springthymeleaf.UserRepository;
+import org.lemanoman.springthymeleaf.repository.RoleRepository;
+import org.lemanoman.springthymeleaf.model.User;
+import org.lemanoman.springthymeleaf.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -26,6 +25,17 @@ public class UserController {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.authenticationManager = authenticationManager;
+    }
+
+    @GetMapping("/user-list")
+    private String userList(Authentication authentication, Model model) {
+        var role = authentication.getAuthorities().stream().filter(a -> a.getAuthority().equals("ROLE_ADMIN")).findFirst();
+        if (role.isEmpty()) {
+            return "404";
+        }
+
+        model.addAttribute("users", userRepository.findAll());
+        return "user/user-list";
     }
 
     @GetMapping("/user-add/{id}")

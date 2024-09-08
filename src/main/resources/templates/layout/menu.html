@@ -42,6 +42,7 @@
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li>
         <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/user-add" class="nav-link px-2">User Add</a></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/user-list" class="nav-link px-2">User List</a></li>
     </ul>
 
     <div class="col-md-3 text-end">

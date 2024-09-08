@@ -1,6 +1,7 @@
-package org.lemanoman.springthymeleaf;
+package org.lemanoman.springthymeleaf.model;
 
 import jakarta.persistence.*;
+
 import java.util.Collection;
 
 @Entity
