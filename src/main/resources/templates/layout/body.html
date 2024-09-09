@@ -1,12 +1,28 @@
-<body xmlns:th="http://www.thymeleaf.org" th:fragment="common_body(body,scripts)">
-    <th:block th:replace="${body}" />
-
+<th:block th:fragment="default_imports()">
     <script type="text/javascript" th:src="@{/static/libs/jquery/jquery-3.4.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/static/libs/jquery-ui-1.12.1/jquery-ui.min.js}"></script>
     <script type="text/javascript" th:src="@{/static/libs/jquery/jquery.maskMoney.min.js}"></script>
-    <script type="text/javascript" th:src="@{/static/libs/bootstrap-5.3.3-dist/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/libs/popper/core_1.6.7.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/libs/popper/dom_1.6.10.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/libs/bootstrap-5.3.3-dist/js/bootstrap.bundle.js}"></script>
     <script type="text/javascript" th:src="@{/static/libs/default.js}"></script>
     <script type="text/javascript" th:src="@{/static/libs/moment/moment.min.js}"></script>
-    <th:block th:replace="${scripts}" />
 
+</th:block>
+
+<body xmlns:th="http://www.thymeleaf.org" th:fragment="common_body(body,scripts)">
+<th:block th:replace="${body}"/>
+<th:block th:replace="~{layout/body :: default_imports()}"/>
+<th:block th:replace="${scripts}"/>
 </body>
+
+<body xmlns:th="http://www.thymeleaf.org" th:fragment="common_body_with_menu(body,scripts)">
+<th:block th:replace="~{layout/menu :: new_menu()}"/>
+<div class="container pt-5">
+    <th:block th:replace="${body}"/>
+</div>
+
+<th:block th:replace="~{layout/body :: default_imports()}"/>
+<th:block th:replace="${scripts}"/>
+</body>
+

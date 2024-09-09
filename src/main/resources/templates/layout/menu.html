@@ -29,6 +29,43 @@
     </div>
 </nav>
 
+<nav class="navbar bg-body-tertiary fixed-top" th:fragment="new_menu()">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Offcanvas navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Usuarios
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/user/add">Novo</a></li>
+                            <li><a class="dropdown-item" href="/user/list">Listar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form th:action="@{/logout}" class="d-flex mt-3" method="post">
+                    <input type="submit" class="btn btn-outline-success" value="Sign out" />
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
 <header th:fragment="commom_menu()"
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
     <div class="col-md-3 mb-2 mb-md-0">
@@ -41,8 +78,8 @@
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li>
-        <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/user-add" class="nav-link px-2">User Add</a></li>
-        <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/user-list" class="nav-link px-2">User List</a></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/add" class="nav-link px-2">User Add</a></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/list" class="nav-link px-2">User List</a></li>
     </ul>
 
     <div class="col-md-3 text-end">

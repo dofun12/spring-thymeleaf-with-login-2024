@@ -5,10 +5,9 @@
 <head th:replace="~{layout/header :: common_header(~{::title})}">
     <title>Adicionar Usuario</title>
 </head>
-<body sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{layout/body :: common_body(~{::conteudo},~{::script})}">
+<body sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{layout/body :: common_body_with_menu(~{::conteudo},~{::script})}">
 <th:block th:fragment="conteudo">
     <div class="container">
-        <header th:replace="~{layout/menu :: commom_menu()}"></header>
         <h1 class="my-4">User List</h1>
         <div class="mb-3">
             <input class="form-control" id="searchInput" type="text" placeholder="Search users...">
@@ -32,7 +31,7 @@
                     </ul>
                 </td>
                 <td th:text="${user.enabled}">true</td>
-                <td><a th:href="'/user/user-add/'+${user.getId()}">Editar</a></td>
+                <td><a th:href="'/user/edit/'+${user.getId()}">Editar</a></td>
             </tr>
             </tbody>
         </table>

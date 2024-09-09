@@ -27,7 +27,7 @@ public class UserController {
         this.authenticationManager = authenticationManager;
     }
 
-    @GetMapping("/user-list")
+    @GetMapping("/list")
     private String userList(Authentication authentication, Model model) {
         var role = authentication.getAuthorities().stream().filter(a -> a.getAuthority().equals("ROLE_ADMIN")).findFirst();
         if (role.isEmpty()) {
@@ -38,7 +38,7 @@ public class UserController {
         return "user/user-list";
     }
 
-    @GetMapping("/user-add/{id}")
+    @GetMapping("/edit/{id}")
     private String userAddByUser(@PathVariable String id,Authentication authentication, Model model) {
         var role = authentication.getAuthorities().stream().filter(a -> a.getAuthority().equals("ROLE_ADMIN")).findFirst();
         if (role.isEmpty()) {
@@ -58,12 +58,12 @@ public class UserController {
         model.addAttribute("user", userSearch.get());
         model.addAttribute("roles", roleRepository.findAll());
 
-        return "user/user-add";
+        return "/user/user-crud";
 
 
     }
 
-    @GetMapping("/user-add")
+    @GetMapping("/add")
     private String userAdd(Authentication authentication, Model model) {
         var role = authentication.getAuthorities().stream().filter(a -> a.getAuthority().equals("ROLE_ADMIN")).findFirst();
         if (role.isEmpty()) {
@@ -76,7 +76,7 @@ public class UserController {
         if (!model.containsAttribute("user")) {
             model.addAttribute("user", new User());
         }
-        return "user/user-add";
+        return "user/user-crud";
 
 
     }

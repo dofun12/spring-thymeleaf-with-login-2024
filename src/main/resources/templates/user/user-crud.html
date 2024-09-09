@@ -5,10 +5,9 @@
 <head th:replace="~{layout/header :: common_header(~{::title})}">
     <title>Adicionar Usuario</title>
 </head>
-<body sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{layout/body :: common_body(~{::conteudo},~{::script})}">
+<body sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{layout/body :: common_body_with_menu(~{::conteudo},~{::script})}">
 <th:block th:fragment="conteudo">
     <div class="container">
-        <header th:replace="~{layout/menu :: commom_menu()}"></header>
         <div class="card my-4">
             <div class="card-header">
                 <h2>Add User</h2>
